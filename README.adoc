@@ -1,0 +1,51 @@
+:sourcedir: ./src/main/java/com/pam/asciidoc/
+:sectnums:
+:source-highlighter: pygments
+:pygments-style: xcode
+:highlightjs-theme: xcode
+
+= AsciiDoc - Automatyczna dokumentacja kodu
+Dokumentacja kodu przy pomocy programu AsciiDoctor
+
+[#Instalacja]
+== Instalacja 
+=== Windows
+* Pobieramy i instalujemy ruby ze strony producenta: https://rubyinstaller.org/
+* Po zainstalowaniu wydajemy polecenie w konsoli:
+[source,terminal]
+gem install asciidoctor
+
+=== Ubuntu
+* W terminalu wydajemy polecenie
+[source,terminal]
+sudo apt-get install asciidoctor
+
+== Dokumentacja
+=== Klasa App
+.Metody:
+* Main
+[source,java]
+include::{sourcedir}App.java[tags=main]
+
+<1> Nazwa metody
+<2> Wypisanie na ekranie tekstu
+
+== Przetwarzanie treści
+=== HTML5
+* Otwórz konsole
+* Przejdź do katalogu, który zawiera twój plik .adoc
+* Wpisz polecenie
+[source,terminal]
+asciidoctor plik.adoc
+
+=== XHTML5
+[source,terminal]
+asciidoctor -b xhtml5 plik.doc
+
+=== DocBook
+[source,terminal]
+asciidoctor -b docbook plik.doc
+
+=== Man pages
+[source,terminal]
+asciidoctor -b manpage plik.doc

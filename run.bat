@@ -1,0 +1,1 @@
+java -cp target/asciidoc-1.0-SNAPSHOT.jar com.pam.asciidoc.App
