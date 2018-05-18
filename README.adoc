@@ -6,7 +6,7 @@
 
 = AsciiDoc - Automatyczna dokumentacja kodu
 Dokumentacja kodu przy pomocy programu AsciiDoctor
-[#Instalacja]
+
 == Instalacja 
 === Windows
 * Pobieramy i instalujemy ruby ze strony producenta: https://rubyinstaller.org/
@@ -48,3 +48,18 @@ asciidoctor -b docbook plik.doc
 === Man pages
 [source,terminal]
 asciidoctor -b manpage plik.doc
+
+=== PDF
+Aby przetworzyć plik .adoc do formatu pdf należy:
+
+* Zainstalować asciidoctor-pdf
+[source,terminal]
+gem install asciidoctor-pdf --pre
+
+* Wydać polecenie:
+[source,terminal]
+asciidoctor-pdf file.adoc
+
+== Kurs
+Pełen kurs można naleźć na stronie domowej programu *AsciiDoctor* pod adresem: https://asciidoctor.org/docs/user-manual/ + 
+Mały przykład z użyciem AsciDoctor znajduje się na repozytorium: https://github.com/PrezentacjaPAM/AsciiDoc
