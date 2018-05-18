@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>AsciiDoc - Automatyczna dokumentacja kodu</title>
+<date>2018-05-18</date>
+<author>
+<personname>
+<firstname>Dokumentacja kodu przy pomocy programu AsciiDoctor</firstname>
+</personname>
+</author>
+<authorinitials>D</authorinitials>
+</info>
+<section xml:id="Instalacja">
+<title>Instalacja</title>
+<section xml:id="_windows">
+<title>Windows</title>
+<itemizedlist>
+<listitem>
+<simpara>Pobieramy i instalujemy ruby ze strony producenta: <link xl:href="https://rubyinstaller.org/">https://rubyinstaller.org/</link></simpara>
+</listitem>
+<listitem>
+<simpara>Po zainstalowaniu wydajemy polecenie w konsoli:</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">gem install asciidoctor</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_ubuntu">
+<title>Ubuntu</title>
+<itemizedlist>
+<listitem>
+<simpara>W terminalu wydajemy polecenie</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">sudo apt-get install asciidoctor</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section xml:id="_dokumentacja">
+<title>Dokumentacja</title>
+<section xml:id="_klasa_app">
+<title>Klasa App</title>
+<itemizedlist>
+<title>Metody:</title>
+<listitem>
+<simpara>Main</simpara>
+<programlisting language="java" linenumbering="unnumbered">    public static void main( String[] args ) <co xml:id="CO1-1"/>
+    {
+        System.out.println( "Hello World!" ); <co xml:id="CO1-2"/>
+    }</programlisting>
+</listitem>
+</itemizedlist>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Nazwa metody</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>Wypisanie na ekranie tekstu</para>
+</callout>
+</calloutlist>
+</section>
+</section>
+<section xml:id="_przetwarzanie_treści">
+<title>Przetwarzanie treści</title>
+<section xml:id="_html5">
+<title>HTML5</title>
+<itemizedlist>
+<listitem>
+<simpara>Otwórz konsole</simpara>
+</listitem>
+<listitem>
+<simpara>Przejdź do katalogu, który zawiera twój plik .adoc</simpara>
+</listitem>
+<listitem>
+<simpara>Wpisz polecenie</simpara>
+<programlisting language="terminal" linenumbering="unnumbered">asciidoctor plik.adoc</programlisting>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_xhtml5">
+<title>XHTML5</title>
+<programlisting language="terminal" linenumbering="unnumbered">asciidoctor -b xhtml5 plik.doc</programlisting>
+</section>
+<section xml:id="_docbook">
+<title>DocBook</title>
+<programlisting language="terminal" linenumbering="unnumbered">asciidoctor -b docbook plik.doc</programlisting>
+</section>
+<section xml:id="_man_pages">
+<title>Man pages</title>
+<programlisting language="terminal" linenumbering="unnumbered">asciidoctor -b manpage plik.doc</programlisting>
+</section>
+</section>
+</article>

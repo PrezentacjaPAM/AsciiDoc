@@ -6,7 +6,6 @@
 
 = AsciiDoc - Automatyczna dokumentacja kodu
 Dokumentacja kodu przy pomocy programu AsciiDoctor
-
 [#Instalacja]
 == Instalacja 
 === Windows
