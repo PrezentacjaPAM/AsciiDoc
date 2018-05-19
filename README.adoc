@@ -83,5 +83,6 @@ Kurs na YouTube https://www.youtube.com/watch?v=2dgGhi7MFqo
 === Ścieżka projektu
 Przy generowaniu javadoc poleceniem 
 [source,terminal]
-mvn javadoc:javadoc:
+mvn javadoc:javadoc
+
 trzeba uważać na ścieżkę projektu - nie może być w niej znaków białych (spacji).
