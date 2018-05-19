@@ -78,3 +78,10 @@ asciidoctor-pdf file.adoc
 Pełen kurs można naleźć na stronie domowej programu *AsciiDoctor* pod adresem: https://asciidoctor.org/docs/user-manual/ + 
 Mały przykład z użyciem AsciDoctor znajduje się na repozytorium: https://github.com/PrezentacjaPAM/AsciiDoc
 Kurs na YouTube https://www.youtube.com/watch?v=2dgGhi7MFqo
+
+== Problemy
+=== Ścieżka projektu
+Przy generowaniu javadoc poleceniem 
+[source,terminal]
+mvn javadoc:javadoc:
+trzeba uważać na ścieżkę projektu - nie może być w niej znaków białych (spacji).
