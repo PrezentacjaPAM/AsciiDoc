@@ -543,44 +543,147 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dokumentacja">2. Dokumentacja</h2>
+<h2 id="_automatyczne_generowanie_dokumentacji">2. Automatyczne generowanie dokumentacji</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_klasa_app">2.1. Klasa App</h3>
+<h3 id="_maven">2.1. Maven</h3>
+<div class="paragraph">
+<p>Aby projekt tpyu maven generował automatycznie dokumentację wykonaj kolejne kroki:<br></p>
+</div>
 <div class="ulist">
-<div class="title">Metody:</div>
 <ul>
 <li>
-<p>Main</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span>    <span class="tok-kd">public</span> <span class="tok-kd">static</span> <span class="tok-kt">void</span> <span class="tok-nf">main</span><span class="tok-o">(</span> <span class="tok-n">String</span><span class="tok-o">[]</span> <span class="tok-n">args</span> <span class="tok-o">)</span> <b class="conum">(1)</b>
-    <span class="tok-o">{</span>
-        <span class="tok-n">System</span><span class="tok-o">.</span><span class="tok-na">out</span><span class="tok-o">.</span><span class="tok-na">println</span><span class="tok-o">(</span> <span class="tok-s">&quot;Hello World!&quot;</span> <span class="tok-o">);</span> <b class="conum">(2)</b>
-    <span class="tok-o">}</span></code></pre>
-</div>
-</div>
+<p>Dodaj plugin do pliku pom.xml</p>
 </li>
 </ul>
 </div>
-<div class="colist arabic">
-<ol>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="xml"><span></span>			<span class="tok-nt">&lt;plugin&gt;</span>
+				<span class="tok-nt">&lt;groupId&gt;</span>org.asciidoctor<span class="tok-nt">&lt;/groupId&gt;</span>
+				<span class="tok-nt">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span class="tok-nt">&lt;/artifactId&gt;</span>
+				<span class="tok-nt">&lt;version&gt;</span>1.5.6<span class="tok-nt">&lt;/version&gt;</span>
+				<span class="tok-nt">&lt;configuration&gt;</span>
+					<span class="tok-nt">&lt;sourceDirectory&gt;</span>src/doc/asciidoc<span class="tok-nt">&lt;/sourceDirectory&gt;</span>
+					<span class="tok-nt">&lt;sourceDocumentName&gt;</span>index.adoc<span class="tok-nt">&lt;/sourceDocumentName&gt;</span>
+					<span class="tok-nt">&lt;backend&gt;</span>html5<span class="tok-nt">&lt;/backend&gt;</span>
+					<span class="tok-nt">&lt;attributes&gt;</span>
+						<span class="tok-nt">&lt;toc&gt;</span>left<span class="tok-nt">&lt;/toc&gt;</span>
+						<span class="tok-nt">&lt;icon&gt;</span>font<span class="tok-nt">&lt;/icon&gt;</span>
+						<span class="tok-nt">&lt;encoding&gt;</span>utf-8<span class="tok-nt">&lt;/encoding&gt;</span>
+						<span class="tok-nt">&lt;generated&gt;</span>${project.build.directory}/asciidoc<span class="tok-nt">&lt;/generated&gt;</span>
+					<span class="tok-nt">&lt;/attributes&gt;</span>
+				<span class="tok-nt">&lt;/configuration&gt;</span>
+				<span class="tok-nt">&lt;executions&gt;</span>
+					<span class="tok-nt">&lt;execution&gt;</span>
+						<span class="tok-nt">&lt;id&gt;</span>output-html<span class="tok-nt">&lt;/id&gt;</span>
+						<span class="tok-nt">&lt;phase&gt;</span>generate-resources<span class="tok-nt">&lt;/phase&gt;</span>
+						<span class="tok-nt">&lt;goals&gt;</span>
+							<span class="tok-nt">&lt;goal&gt;</span>process-asciidoc<span class="tok-nt">&lt;/goal&gt;</span>
+						<span class="tok-nt">&lt;/goals&gt;</span>
+					<span class="tok-nt">&lt;/execution&gt;</span>
+				<span class="tok-nt">&lt;/executions&gt;</span>
+			<span class="tok-nt">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Nazwa metody</p>
+<p>Stwórz katalog o ścieżce</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="terminal"><span></span>./src/doc/asciidoc/</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Wypisanie na ekranie tekstu</p>
+<p>W utworzonym katalogu stwórz plik <em>index.adoc</em> - jest to plik w którym możesz pisać dokumentację</p>
 </li>
-</ol>
+<li>
+<p>Skompiluj projekt za pomocą polecenia:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="terminal"><span></span>mvn clean install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wygenerowana dokumentacja znajduje się w folderze target/generated-docs</p>
+</li>
+<li>
+<p>Więcej o konfiguracji pluginu można znaleźć na stronie: <a href="https://github.com/asciidoctor/asciidoctor-maven-plugin" class="bare">https://github.com/asciidoctor/asciidoctor-maven-plugin</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_przetwarzanie_treści">3. Przetwarzanie treści</h2>
+<h2 id="_asciidoc_w_javadoc">3. AsciiDoc w JavaDoc</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_html5">3.1. HTML5</h3>
+<h3 id="_konfiguracja_mavena">3.1. Konfiguracja Maven&#8217;a</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Dodajemy zależność:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="xml"><span></span>		<span class="tok-c">&lt;!-- https://mvnrepository.com/artifact/org.asciidoctor/asciidoclet --&gt;</span>
+		<span class="tok-nt">&lt;dependency&gt;</span>
+			<span class="tok-nt">&lt;groupId&gt;</span>org.asciidoctor<span class="tok-nt">&lt;/groupId&gt;</span>
+			<span class="tok-nt">&lt;artifactId&gt;</span>asciidoclet<span class="tok-nt">&lt;/artifactId&gt;</span>
+			<span class="tok-nt">&lt;version&gt;</span>1.5.4<span class="tok-nt">&lt;/version&gt;</span>
+		<span class="tok-nt">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Dodajemy plugin:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="xml"><span></span>			<span class="tok-nt">&lt;plugin&gt;</span>
+				<span class="tok-nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tok-nt">&lt;/groupId&gt;</span>
+				<span class="tok-nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="tok-nt">&lt;/artifactId&gt;</span>
+				<span class="tok-nt">&lt;version&gt;</span>2.9<span class="tok-nt">&lt;/version&gt;</span>
+				<span class="tok-nt">&lt;configuration&gt;</span>
+					<span class="tok-nt">&lt;source&gt;</span>1.7<span class="tok-nt">&lt;/source&gt;</span>
+					<span class="tok-nt">&lt;doclet&gt;</span>org.asciidoctor.Asciidoclet<span class="tok-nt">&lt;/doclet&gt;</span>
+					<span class="tok-nt">&lt;docletArtifact&gt;</span>
+						<span class="tok-nt">&lt;groupId&gt;</span>org.asciidoctor<span class="tok-nt">&lt;/groupId&gt;</span>
+						<span class="tok-nt">&lt;artifactId&gt;</span>asciidoclet<span class="tok-nt">&lt;/artifactId&gt;</span>
+						<span class="tok-nt">&lt;version&gt;</span>1.5.4<span class="tok-nt">&lt;/version&gt;</span>
+					<span class="tok-nt">&lt;/docletArtifact&gt;</span>
+					<span class="tok-nt">&lt;overview&gt;</span>src/main/java/overview.adoc<span class="tok-nt">&lt;/overview&gt;</span>
+					<span class="tok-nt">&lt;additionalparam&gt;</span>
+					  --base-dir ${project.basedir}
+					  --attribute &quot;name=${project.name}&quot;
+					  --attribute &quot;version=${project.version}&quot;
+					  --attribute &quot;title-link=http://example.com[${project.name} ${project.version}]&quot;
+					<span class="tok-nt">&lt;/additionalparam&gt;</span>
+				<span class="tok-nt">&lt;/configuration&gt;</span>
+			<span class="tok-nt">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generujemy JavaDoc poleceniem</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="terminal"><span></span>mvn javadoc:javadoc</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_przetwarzanie_treści">4. Przetwarzanie treści</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_html5">4.1. HTML5</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -601,31 +704,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_xhtml5">3.2. XHTML5</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="terminal"><span></span>asciidoctor -b xhtml5 plik.doc</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_docbook">3.3. DocBook</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="terminal"><span></span>asciidoctor -b docbook plik.doc</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_man_pages">3.4. Man pages</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="terminal"><span></span>asciidoctor -b manpage plik.doc</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_pdf">3.5. PDF</h3>
+<h3 id="_pdf">4.2. PDF</h3>
 <div class="paragraph">
 <p>Aby przetworzyć plik .adoc do formatu pdf należy:</p>
 </div>
@@ -653,18 +732,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_kurs">4. Kurs</h2>
+<h2 id="_kurs">5. Kurs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pełen kurs można naleźć na stronie domowej programu <strong>AsciiDoctor</strong> pod adresem: <a href="https://asciidoctor.org/docs/user-manual/" class="bare">https://asciidoctor.org/docs/user-manual/</a><br>
-Mały przykład z użyciem AsciDoctor znajduje się na repozytorium: <a href="https://github.com/PrezentacjaPAM/AsciiDoc" class="bare">https://github.com/PrezentacjaPAM/AsciiDoc</a></p>
+Mały przykład z użyciem AsciDoctor znajduje się na repozytorium: <a href="https://github.com/PrezentacjaPAM/AsciiDoc" class="bare">https://github.com/PrezentacjaPAM/AsciiDoc</a>
+Kurs na YouTube <a href="https://www.youtube.com/watch?v=2dgGhi7MFqo" class="bare">https://www.youtube.com/watch?v=2dgGhi7MFqo</a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-18 18:47:46 îrodkowoeuropejski czas letni
+Last updated 2018-05-19 11:05:24 îrodkowoeuropejski czas letni
 </div>
 </div>
 </body>

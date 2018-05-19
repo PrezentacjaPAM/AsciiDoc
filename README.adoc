@@ -19,15 +19,41 @@ gem install asciidoctor
 [source,terminal]
 sudo apt-get install asciidoctor
 
-== Dokumentacja
-=== Klasa App
-.Metody:
-* Main
-[source,java]
-include::{sourcedir}App.java[tags=main]
+== Automatyczne generowanie dokumentacji
+=== Maven
+Aby projekt tpyu maven generował automatycznie dokumentację wykonaj kolejne kroki: + 
 
-<1> Nazwa metody
-<2> Wypisanie na ekranie tekstu
+* Dodaj plugin do pliku pom.xml
+
+[source,xml]
+include::./pom.xml[tags=plugin]
+
+* Stwórz katalog o ścieżce
+[source,terminal]
+./src/doc/asciidoc/
+
+* W utworzonym katalogu stwórz plik _index.adoc_ - jest to plik w którym możesz pisać dokumentację
+* Skompiluj projekt za pomocą polecenia: 
+[source, terminal]
+mvn clean install
+
+* Wygenerowana dokumentacja znajduje się w folderze target/generated-docs
+* Więcej o konfiguracji pluginu można znaleźć na stronie: https://github.com/asciidoctor/asciidoctor-maven-plugin
+
+== AsciiDoc w JavaDoc
+=== Konfiguracja Maven'a
+
+* Dodajemy zależność: 
+[source,xml]
+include::./pom.xml[tags=asciidoclet]
+
+* Dodajemy plugin:
+[source, xml]
+include::./pom.xml[tags=asciidocletPlugin]
+
+* Generujemy JavaDoc poleceniem
+[source,terminal]
+mvn javadoc:javadoc
 
 == Przetwarzanie treści
 === HTML5
@@ -36,18 +62,6 @@ include::{sourcedir}App.java[tags=main]
 * Wpisz polecenie
 [source,terminal]
 asciidoctor plik.adoc
-
-=== XHTML5
-[source,terminal]
-asciidoctor -b xhtml5 plik.doc
-
-=== DocBook
-[source,terminal]
-asciidoctor -b docbook plik.doc
-
-=== Man pages
-[source,terminal]
-asciidoctor -b manpage plik.doc
 
 === PDF
 Aby przetworzyć plik .adoc do formatu pdf należy:
@@ -63,3 +77,4 @@ asciidoctor-pdf file.adoc
 == Kurs
 Pełen kurs można naleźć na stronie domowej programu *AsciiDoctor* pod adresem: https://asciidoctor.org/docs/user-manual/ + 
 Mały przykład z użyciem AsciDoctor znajduje się na repozytorium: https://github.com/PrezentacjaPAM/AsciiDoc
+Kurs na YouTube https://www.youtube.com/watch?v=2dgGhi7MFqo

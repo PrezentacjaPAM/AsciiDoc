@@ -1,0 +1,11 @@
+:sourcedir: ../../../src/main/java
+
+= AsciiDoc Example App
+Przykładowa aplikacja z dokumentacją AsciiDoc
+
+== Main
+[source, java]
+include::{sourcedir}/com/pam/asciidoc/App.java[tags=main]
+
+<1> Metoda main
+<2> Wypisanie na ekranie "*Hello, World*"
