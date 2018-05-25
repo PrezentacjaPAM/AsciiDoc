@@ -1,4 +1,5 @@
 :sourcedir: ../../../src/main/java
+:icons: font
 
 = AsciiDoc Example App
 Przykładowa aplikacja z dokumentacją AsciiDoc
@@ -9,3 +10,14 @@ include::{sourcedir}/com/pam/asciidoc/App.java[tags=main]
 
 <1> Metoda main
 <2> Wypisanie na ekranie "*Hello, World*"
+
+=== XYZ
+
+.Feeding the Werewolves
+**** 
+While werewolves are hardy community members, keep in mind the following dietary concerns:
+
+. They are allergic to cinnamon.
+. More than two glasses of orange juice in 24 hours makes them howl in harmony with alarms and sirens.
+. Celery makes them sad.
+****
